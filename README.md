@@ -1,4 +1,4 @@
-# ササル
+# モチベ(旧名ササル。URL・保存場所の名前は sasaru のまま)
 
 公開 URL: https://ashi40041052-eng.github.io/sasaru/ (リポジトリ: github.com/ashi40041052-eng/sasaru、GitHub Pages)
 

@@ -1,5 +1,5 @@
 'use strict';
-// ササル — 刺さったスクショを縦スワイプで見返す PWA。データは端末の IndexedDB だけに保存する。
+// モチベ — 刺さったスクショを縦スワイプで見返す PWA。データは端末の IndexedDB だけに保存する。
 
 const $ = s => document.querySelector(s);
 const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -398,7 +398,7 @@ function openTagEditor(targets, done) {
 async function shareCur() {
   const m = curMeta(); if (!m) return;
   const b = await getBlob('images', m.id);
-  const file = new File([b], `sasaru-${m.id}.jpg`, { type: 'image/jpeg' });
+  const file = new File([b], `motibe-${m.id}.jpg`, { type: 'image/jpeg' });
   if (navigator.canShare && navigator.canShare({ files: [file] })) {
     try { await navigator.share({ files: [file], text: m.memo || undefined }); } catch (e) {}
   } else {
@@ -567,7 +567,7 @@ async function exportZip() {
       const th = await getBlob('thumbs', m.id); if (th) entries.push({ name: `thumbs/${m.id}.jpg`, blob: th });
     }
     const zip = await makeZip(entries, (i, n) => { s.querySelector('#bk').style.width = (i / n * 100) + '%'; s.querySelector('#bkT').textContent = `${i} / ${n}`; });
-    const d = new Date(); const name = `sasaru-backup-${d.getFullYear()}${String(d.getMonth() + 1).padStart(2, '0')}${String(d.getDate()).padStart(2, '0')}.zip`;
+    const d = new Date(); const name = `motibe-backup-${d.getFullYear()}${String(d.getMonth() + 1).padStart(2, '0')}${String(d.getDate()).padStart(2, '0')}.zip`;
     const file = new File([zip], name, { type: 'application/zip' });
     importing = false; closeSheet();
     if (navigator.canShare && navigator.canShare({ files: [file] })) {
@@ -585,7 +585,7 @@ $('#zipIn').addEventListener('change', async e => {
   const s = openSheet(`<h2>戻しています…</h2><div class="bar"><i id="rs"></i></div><p id="rsT"></p>`);
   try {
     const files = await readZip(f);
-    if (!files['meta.json']) throw new Error('ササルのバックアップではありません');
+    if (!files['meta.json']) throw new Error('モチベのバックアップではありません');
     const data = JSON.parse(await files['meta.json'].text());
     const known = new Set(metas.map(m => m.hash)); let added = 0, n = 0;
     for (const m of data.items) {

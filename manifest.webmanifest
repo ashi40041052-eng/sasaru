@@ -1,6 +1,6 @@
 {
-  "name": "ササル",
-  "short_name": "ササル",
+  "name": "モチベ",
+  "short_name": "モチベ",
   "description": "刺さった名言・名シーンのスクショを縦スワイプで見返す",
   "start_url": "./",
   "scope": "./",
