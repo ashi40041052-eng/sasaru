@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' blob: data:; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="ササル">
+<meta name="theme-color" content="#000000">
+<title>ササル</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icons/icon-180.png">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="feed" aria-label="フィード"></div>
+
+<div id="empty" hidden>
+  <div class="empty-in">
+    <div class="logo">刺</div>
+    <h1>ササル</h1>
+    <p>刺さった名言・名シーンのスクショを入れて、<br>縦スワイプで見返すアプリです。</p>
+    <button class="big" data-act="add">＋ スクショをまとめて追加</button>
+    <p class="hint">写真アプリから何枚でも一度に選べます。<br>同じスクショは自動で飛ばします。</p>
+    <button class="link" data-act="restore">バックアップから戻す</button>
+  </div>
+</div>
+
+<header id="top">
+  <button id="filterBtn" data-act="filter"><span id="filterLabel">すべて</span> <span id="count"></span> ▾</button>
+  <div class="spacer"></div>
+  <button data-act="sort" id="sortBtn" title="並び順">🔀</button>
+  <button data-act="auto" id="autoBtn" title="自動めくり">▶︎</button>
+  <button data-act="grid" title="一覧">▦</button>
+  <button data-act="add" class="add" title="追加">＋</button>
+</header>
+
+<aside id="side">
+  <button data-act="fav" id="favBtn"><span class="ic">♡</span><span class="lb">刺さる</span></button>
+  <button data-act="memo"><span class="ic">✎</span><span class="lb">メモ</span></button>
+  <button data-act="tag"><span class="ic">#</span><span class="lb">タグ</span></button>
+  <button data-act="zoom"><span class="ic">⤢</span><span class="lb">拡大</span></button>
+  <button data-act="share"><span class="ic">↗</span><span class="lb">共有</span></button>
+  <button data-act="del"><span class="ic">🗑</span><span class="lb">削除</span></button>
+</aside>
+
+<div id="caption"></div>
+<div id="heart">♥</div>
+<div id="toast"></div>
+
+<div id="sheetBack" hidden></div>
+<section id="sheet" hidden></section>
+
+<section id="grid" hidden>
+  <header class="ghead">
+    <button data-act="gridClose">✕</button>
+    <div class="gtitle" id="gridTitle">一覧</div>
+    <button data-act="gridSelect" id="gridSelectBtn">選択</button>
+    <button data-act="settings">⚙︎</button>
+  </header>
+  <div id="gridBody"></div>
+  <footer id="gridBar" hidden>
+    <span id="selCount">0枚</span>
+    <button data-act="selAll">全部</button>
+    <button data-act="selTag"># タグ</button>
+    <button data-act="selFav">♥</button>
+    <button data-act="selDel" class="danger">削除</button>
+  </footer>
+</section>
+
+<section id="zoom" hidden>
+  <div id="zoomScroll"><img id="zoomImg" alt=""></div>
+  <div class="zbar">
+    <button data-act="zoomScale">2倍</button>
+    <button data-act="zoomClose">閉じる</button>
+  </div>
+</section>
+
+<div id="install" hidden>
+  <b>ホーム画面に追加すると、アプリとして使えます</b><br>
+  下の <span class="shareic">共有ボタン</span> →「ホーム画面に追加」
+  <button data-act="installClose">✕</button>
+</div>
+
+<input type="file" id="fileIn" accept="image/*" multiple hidden>
+<input type="file" id="zipIn" accept=".zip,application/zip" hidden>
+<script src="app.js"></script>
+</body>
+</html>
