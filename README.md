@@ -1,5 +1,7 @@
 # ササル
 
+公開 URL: https://ashi40041052-eng.github.io/sasaru/ (リポジトリ: github.com/ashi40041052-eng/sasaru、GitHub Pages)
+
 刺さった名言・名シーンのスクショを入れて、TikTok のように縦スワイプで見返す iPhone 用 Web アプリ(PWA)。
 外部ライブラリなし。データは各端末の IndexedDB にだけ保存される(サーバーなし)。
 
@@ -26,4 +28,13 @@
 3. ホームのアイコンから開いて「＋」でスクショを選ぶ
 
 ## 更新する時
-`sw.js` の `V` の数字を上げてから公開し直す。
+1. `sw.js` の `V` の数字を上げる
+2. `tools/selftest.cjs` を流す
+3. `git commit` して `git push`(1〜2分で反映)→ `tools/livecheck.cjs` で公開版を確認
+
+`tools/` は公開しない(.gitignore)。コミットのメールは GitHub の noreply を使う(このリポジトリだけ設定済み)。
+
+## セキュリティ(2026-11-26 点検)
+- 外部通信なし・外部スクリプトなし。CSP で自分のファイル以外のスクリプトを止めている
+- 表示する文字はすべてエスケープ。バックアップ zip から戻す時は id・数値・タグの形を確かめてから入れる(selftest に細工 zip のテストあり)
+- 画像は各端末の IndexedDB だけ。公開しているのはアプリの部品だけ
